@@ -21,7 +21,9 @@ axiosInstance.interceptors.request.use(
     response => response,
     error => {
         if(error.response && error.response.status === 401){
-            window.location = '/login'
+            alert('Session expired. Please login again.');
+            localStorage.removeItem('token');
+            window.location = '/'
         }
 
         return Promise.reject(error)

@@ -12,6 +12,7 @@ import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { AuthProvider } from './context/AuthContext.jsx'
 import store from './redux/store.js'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard/>
+        element: <ProtectedRoute><Dashboard/></ProtectedRoute>
       }
     ]
   }

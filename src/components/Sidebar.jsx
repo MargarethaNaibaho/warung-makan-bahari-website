@@ -20,7 +20,7 @@ const Sidebar = ({children}) => {
     }
 
     return (
-        <aside className={`${isExpanded ? "w-72" : "w-20"} bg-white border-r shadow-sm h-screen transition-all duration-300`}>
+        <aside className={`${isExpanded ? "min-w-72" : "w-20"} bg-white border-r shadow-sm  h-full transition-all duration-300`}>
             <nav className="h-full flex flex-col bg-white border-r shadow-sm">
                 <div className="p-4 pb-2 mb-10 flex justify-between items-center">
                     <img src="src/assets/images/logo.png" className={`overflow-hidden transition-all duration-300 ${isExpanded ? "w-12" : "w-0"}`} />
