@@ -18,6 +18,13 @@ const authReducer = (state, action) => {
                 token: action.payload.token,
                 user: action.payload.user
             }
+        case 'REGISTER':
+            return {
+                ...state,
+                isLoggedIn: null,
+                token: null,
+                user: action.payload.user
+            }
         case 'LOGOUT':
             return {
                 ...state,
@@ -59,6 +66,26 @@ export const AuthProvider = (({children}) => {
         }
     }
 
+    const register = async(username, password, name, phoneNumber) => {
+        try{
+            const response = await axiosInstance.post('/auth/register', {username, password, name, phoneNumber})
+            const {data, message} = response.data;
+
+            if(data){
+                dispatch({
+                    type: 'REGISTER',
+                    payload: {
+                        user: data.username
+                    }
+                })
+            } else{
+                throw new Error(`Register failed: ${message}`)
+            }
+        } catch(e){
+            throw new Error(e.response?.data?.message || 'User already exists')
+        }
+    }
+
     const logout = () => {
         localStorage.removeItem('token');
         dispatch({type: 'LOGOUT'})
@@ -67,7 +94,8 @@ export const AuthProvider = (({children}) => {
     const value = {
         ...authState,
         login,
-        logout
+        logout,
+        register
     }
 
     return (
