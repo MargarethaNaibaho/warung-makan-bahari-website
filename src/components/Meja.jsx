@@ -92,6 +92,7 @@ const Meja = () => {
     return (
         <>
         <div>
+            Belum selesai
             <p className="my-10 font-bold text-3xl text-amber-800 text-center">Meja Warung Makan Bahari</p>
 
             <div className="flex justify-center mb-5 space-x-3">
